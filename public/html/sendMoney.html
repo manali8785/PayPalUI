@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paypal_app">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Money</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <link rel="stylesheet" media="all" href="../stylesheets/spinner.css" />
+</head>
+<body ng-controller="SendMoneyController">
+    <form name="sendMoneyForm" novalidate>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Send Money</div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <span class="input-group-addon">To:</span>
+                    <input type="email" name="email"  required ng-model="form.email" type="text" class="form-control" placeholder="Type email address" style="width:90%;">
+                     <span ng-show="sendMoneyForm.email.$valid"><img src="../images/correct.gif"></span>
+                     <span ng-show="sendMoneyForm.email.$dirty && sendMoneyForm.email.$invalid">
+                          <span class="error_messages" ng-show="sendMoneyForm.email.$error.email"><img src="../images/wrong.png"></span>
+                     </span>
+                </div>
+                 <span ng-show="sendMoneyForm.email.$dirty && sendMoneyForm.email.$invalid">
+                          <span class="error_messages" ng-show="sendMoneyForm.email.$error.required">Email is required!</span>
+                 </span>
+
+                <div class="input-group">
+                    <span class="input-group-addon">Amount:</span><span  class="input-group-addon">{{form.currency}}</span>
+                    <input type="number" ng-pattern="/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/"  ng-model="form.amount"  name="amount" class="form-control" placeholder="Enter amount" style="width:80%;" required>
+                    <select ng-model="form.currency" id="currency" name="currency" class="form-control" style="width:20%;" required>
+                            <option value="$">USD</option>
+                            <option value="€">EUR</option>
+                            <option value="¥">JPY</option>
+                    </select>
+                </div>
+                <span ng-show="sendMoneyForm.amount.$dirty && sendMoneyForm.currency.$invalid">
+                    <span class="error_messages" ng-show="sendMoneyForm.currency.$error.required">You must select currency!</span>
+                </span>
+
+                <span ng-show="sendMoneyForm.amount.$dirty && sendMoneyForm.amount.$invalid">
+                    <span class="error_messages" ng-show="sendMoneyForm.amount.$error.required">You must enter amount!</span>
+                    <span class="error_messages" ng-show="sendMoneyForm.amount.$invalid">Amount should be a positive number!</span>
+                </span>
+
+                <div class="input-group">
+                    <span>Message(optional):</span>
+                    <textarea class="form-control" rows="4" cols="58" ng-model="form.message"></textarea>
+                </div>
+                <span>What's this payment for?</span>
+                    <ul class="list-group" id="paymentfor" ng-click="setSelected($event)" >
+                        <li class="list-group-item">I'm sending money to family or friends</li>
+                        <li class="list-group-item">I'm paying for goods or services</li>
+                    </ul>
+                </div>
+            <div class="panel-footer">
+                <button class="btn btn-default" ng-click="reset()">Clear</button>
+                <button ng-click="loading()" ng-disabled="sendMoneyForm.$invalid" class="btn btn-default">Next</button>
+            </div>
+        </div>
+        <div class="ispinner ispinner--white ispinner--animating">
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+                <div class="ispinner__blade"></div>
+            </div>
+        <div class="container"></div>
+    </form>
+
+
+</body>
+</html>

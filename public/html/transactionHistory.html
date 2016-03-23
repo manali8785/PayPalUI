@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="stylesheets/app.css">
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">Transaction History</div>
+    <div class="panel-body tablecontainer" style="text-align: center; overflow: auto" >
+    <table class="table">
+        <tr ng-repeat="d in data">
+            <td>{{d.date}}</td>
+            <td>{{d.payedTo}}</td>
+            <td>{{d.amount}}</td>
+        </tr>
+    </table>
+    </div>
+
+    <div class="panel-footer">
+        <button class="btn btn-default" ui-sref="home">Back</button>
+    </div>
+</div>
+</body>
+</html>

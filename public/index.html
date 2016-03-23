@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paypal_app">
+<head>
+    <meta charset="UTF-8">
+    <title>PayPal Application</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="stylesheets/app.css">
+</head>
+<body>
+<div ui-view>
+    <div class="panel panel-primary">
+        <div class="panel-heading">What are we doing?</div>
+        <div class="panel-body" style="text-align: center">
+            <p><button class="btn btn-primary" ui-sref="sendMoney">Send Money</button></p>
+            <button class="btn btn-primary" ui-sref="getTransactionHistory">View Transaction History</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
